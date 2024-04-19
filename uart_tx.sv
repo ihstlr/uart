@@ -1,3 +1,4 @@
+
 module uart_tx(clk, tx, tready, tvalid, tdata);
    parameter integer cycles_per_bit = 434;
 

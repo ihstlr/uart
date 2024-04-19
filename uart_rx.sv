@@ -2,10 +2,9 @@ rt_rx(clk, rx, overflow, tready, tvalid, tdata);
    parameter integer cycles_per_bit = 434;
 
    input logic       clk;
-
    // Serial input bit
    input logic       rx;
-
+   // Indicate overflow
    output logic      overflow = 1'b0;
 
    // AXI stream for input bytes
@@ -13,10 +12,10 @@ rt_rx(clk, rx, overflow, tready, tvalid, tdata);
    output logic      tvalid = 1'b0;
    output logic [7:0] tdata;
 
-   typedef enum       {idle, receiving, done} state_t;
-   state_t state = idle;
+   typedef enum   {idle, receiving, done} state_t;
+   state_t        state = idle;
 
-   logic [7:0]        data;
+   logic [7:0]                       data;
    logic [$bits(cycles_per_bit)-1:0] cycles = 0;
    logic [$bits($size(data))-1:0]    index;
 
